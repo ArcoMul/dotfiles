@@ -1,0 +1,119 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set rtp+=~/vimfiles/bundle/vundle/
+let path='~/vimfiles/bundle'
+call vundle#rc(path)
+
+" let Vundle manage Vundle, required
+Bundle 'gmarik/vundle'
+
+" NERD tree file explorer
+Bundle 'scrooloose/nerdtree'
+
+" Git gutter
+Bundle 'airblade/vim-gitgutter'
+
+" CtrlP
+Bundle 'kien/ctrlp.vim'
+
+" Status line
+Bundle 'bling/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+
+" Auto auto complete
+Bundle 'Shougo/neocomplcache.vim'
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+
+" Cpp autocomplete
+Bundle 'vim-scripts/OmniCppComplete'
+set nocp
+
+" Bundle 'vim-scripts/taglist.vim'
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+Bundle 'majutsushi/tagbar'
+
+" Surf forward and backward in history
+Bundle 'ton/vim-bufsurf'
+
+" Switch between header and source files
+Bundle 'vim-scripts/a.vim'
+
+" Wombat theme
+Bundle 'vim-scripts/Wombat'
+
+" Less syntax highlighting
+Bundle 'groenewege/vim-less'
+
+Bundle 'wting/rust.vim'
+
+syntax on
+filetype plugin indent on
+
+" Start fullscreen
+au GUIEnter * simalt ~x
+
+" Remove menu bar
+set guioptions-=m
+
+" Remove toolbar
+set guioptions-=T
+
+" Remove right-hand scroll bar
+set guioptions-=r
+
+" Font
+if has('gui_running')
+  set guifont=Droid_Sans_Mono:h10:cANSI
+endif
+
+" Color scheme
+colorscheme wombat 
+highlight clear SignColumn
+
+" Tab width
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
+" Auto indenting
+set autoindent
+set smartindent
+
+" Don't create ~X files
+set nobackup
+
+" Show linenumbers
+set number
+
+" No line wrap
+set nowrap
+
+" Set start directory
+:command Dev cd ~/Development
+:command Pass e ~/Personal.sync/.passwords
+cd ~/ 
+
+set diffexpr=MyDiff()
+
+" Disable beeping error sound
+set vb t_vb=
+
+" Look up in parent folders for tag folder
+set tags=./tags;/
+
+" Mapping
+" Paste registery 0
+" nmap <C-p> "0p
+" nnoremap <Tab> :TlistToggle<CR>
+nnoremap <Tab> :TagbarToggle<CR>
+nnoremap <S-Tab> :A<CR>
+nnoremap <C-h> :BufSurfBack<CR>
+nnoremap <C-l> :BufSurfForward<CR>
+nnoremap <C-S-p> :CtrlPTag<CR>
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
