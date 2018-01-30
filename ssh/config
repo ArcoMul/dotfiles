@@ -1,0 +1,4 @@
+Host <alias> 
+    HostName <host>
+    User <username>
+    LocalForward 27018 127.0.0.1:27017
